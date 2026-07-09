@@ -24,6 +24,14 @@ public class SetupController {
     private final ProductRepository productRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @GetMapping("/reset")
+    public Map<String, String> reset() {
+        productRepository.deleteAll();
+        categoryRepository.deleteAll();
+        userRepository.deleteAll();
+        return Map.of("message", "All data cleared. Now call /api/setup/init");
+    }
+
     @GetMapping("/init")
     public Map<String, String> init() {
         if (userRepository.existsByUsername("admin")) {
@@ -40,7 +48,7 @@ public class SetupController {
         userRepository.save(admin);
 
         // Categories
-        String[] catNames = {"Electronics", "Clothing", "Books", "Home & Kitchen", "Sports"};
+        String[] catNames = {"Men", "Women", "Girls", "Boys", "Kids"};
         Category[] cats = new Category[5];
         for (int i = 0; i < catNames.length; i++) {
             Category c = new Category();
@@ -48,28 +56,28 @@ public class SetupController {
             cats[i] = categoryRepository.save(c);
         }
 
-        // 20 Products
+        // 20 Dress Shop Products
         Object[][] products = {
-            {"iPhone 15 Pro", "Latest Apple smartphone with titanium design", 999.99, 50, "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", 0},
-            {"Samsung 4K TV 55\"", "Crystal clear 4K display with smart features", 649.99, 30, "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400", 0},
-            {"Sony WH-1000XM5", "Industry-leading noise cancelling headphones", 349.99, 75, "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400", 0},
-            {"MacBook Air M2", "Supercharged by M2 chip, ultra-thin design", 1099.99, 25, "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", 0},
-            {"Wireless Keyboard", "Slim wireless keyboard with long battery life", 44.99, 110, "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400", 0},
-            {"Men Classic T-Shirt", "Premium cotton everyday essential tee", 29.99, 200, "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400", 1},
-            {"Women Floral Dress", "Elegant floral print summer dress", 59.99, 150, "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400", 1},
-            {"Denim Jacket", "Classic blue denim jacket for all seasons", 79.99, 100, "https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=400", 1},
-            {"Running Sneakers", "Lightweight performance running shoes", 89.99, 120, "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", 1},
-            {"Wool Sweater", "Cozy merino wool sweater for winter", 69.99, 80, "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400", 1},
-            {"Atomic Habits", "Build good habits and break bad ones", 16.99, 300, "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400", 2},
-            {"The Alchemist", "A journey of self-discovery and dreams", 12.99, 250, "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400", 2},
-            {"Deep Work", "Rules for focused success in a distracted world", 14.99, 180, "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400", 2},
-            {"Air Fryer 5.8Qt", "Crispy food with 85% less oil", 89.99, 60, "https://images.unsplash.com/photo-1585515320310-259814833e62?w=400", 3},
-            {"Coffee Maker", "Brew perfect coffee every morning", 49.99, 90, "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400", 3},
-            {"Blender Pro", "High-speed blender for smoothies and more", 69.99, 55, "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400", 3},
-            {"Yoga Mat", "Non-slip premium yoga and exercise mat", 34.99, 140, "https://images.unsplash.com/photo-1601925228008-f5e4c5e5e5e5?w=400", 4},
-            {"Dumbbells Set 20kg", "Adjustable dumbbell set for home gym", 119.99, 45, "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400", 4},
-            {"Cycling Helmet", "Lightweight safety helmet for cyclists", 54.99, 70, "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", 4},
-            {"Water Bottle 1L", "Insulated stainless steel water bottle", 24.99, 200, "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", 4},
+            {"Men Formal Shirt", "Slim fit cotton formal shirt for office wear", 34.99, 100, "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400", 0},
+            {"Men Casual T-Shirt", "Comfortable round neck cotton t-shirt", 19.99, 150, "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400", 0},
+            {"Men Denim Jeans", "Classic straight fit blue denim jeans", 49.99, 80, "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400", 0},
+            {"Men Ethnic Kurta", "Traditional cotton kurta for festive occasions", 39.99, 60, "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400", 0},
+            {"Women Saree", "Elegant silk saree with golden border", 89.99, 40, "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400", 1},
+            {"Women Kurti", "Printed cotton kurti perfect for daily wear", 29.99, 120, "https://images.unsplash.com/photo-1594938298603-c8148c4b4e5e?w=400", 1},
+            {"Women Floral Dress", "Elegant floral print summer dress", 54.99, 90, "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400", 1},
+            {"Women Leggings", "Stretchable high-waist leggings for comfort", 24.99, 200, "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400", 1},
+            {"Women Salwar Suit", "Beautiful embroidered salwar kameez set", 69.99, 50, "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400", 1},
+            {"Girls Frock", "Cute floral frock for little girls", 22.99, 100, "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400", 2},
+            {"Girls Party Dress", "Sparkly tutu dress for birthday parties", 34.99, 70, "https://images.unsplash.com/photo-1476234251651-f353703a034d?w=400", 2},
+            {"Girls Lehenga", "Traditional lehenga choli for festivals", 44.99, 45, "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400", 2},
+            {"Girls Casual Top", "Colorful printed top for everyday wear", 14.99, 130, "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400", 2},
+            {"Boys Shirt & Pants Set", "Smart formal set for school and events", 29.99, 80, "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400", 3},
+            {"Boys Graphic T-Shirt", "Fun printed t-shirt for active boys", 17.99, 150, "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400", 3},
+            {"Boys Denim Shorts", "Comfortable denim shorts for summer", 22.99, 100, "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400", 3},
+            {"Boys Ethnic Kurta", "Festive cotton kurta pajama set for boys", 27.99, 60, "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400", 3},
+            {"Kids Winter Jacket", "Warm padded jacket for cold weather", 44.99, 55, "https://images.unsplash.com/photo-1604671801908-6f0c6a092c05?w=400", 4},
+            {"Kids Pyjama Set", "Soft cotton night suit for kids", 19.99, 180, "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400", 4},
+            {"Kids School Uniform", "Durable and comfortable school uniform set", 32.99, 90, "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400", 4},
         };
 
         for (Object[] p : products) {
@@ -83,6 +91,6 @@ public class SetupController {
             productRepository.save(product);
         }
 
-        return Map.of("message", "Setup complete! Admin: admin / Admin@123 — 20 products added");
+        return Map.of("message", "Dress shop setup complete! Admin: admin / Admin@123 — 20 products added");
     }
 }
