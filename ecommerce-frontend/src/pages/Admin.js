@@ -20,6 +20,8 @@ export default function Admin() {
   const [msg, setMsg] = useState({ text: "", type: "" });
   const [error, setError] = useState("");
 
+  const [editPrices, setEditPrices] = useState({});
+
   const flash = (text, type = "success") => {
     setMsg({ text, type });
     setTimeout(() => setMsg({ text: "", type: "" }), 3000);
@@ -72,6 +74,22 @@ export default function Admin() {
   const updateStatus = async (id, status) => {
     try { await api.put(`/admin/orders/${id}/status`, { status }); flash("Status updated!"); fetchAll(); }
     catch (err) { flash(err.response?.data?.message || "Error", "error"); }
+  };
+
+  const updatePrice = async (product, newPrice) => {
+    try {
+      await api.put(`/products/${product.id}`, {
+        name: product.name,
+        description: product.description,
+        price: parseFloat(newPrice),
+        stock: product.stock,
+        imageUrl: product.imageUrl,
+        category: product.category ? { id: product.category.id } : null,
+      });
+      flash(`${product.name} price updated!`);
+      setEditPrices((prev) => { const n = { ...prev }; delete n[product.id]; return n; });
+      fetchAll();
+    } catch { flash("Error updating price", "error"); }
   };
 
   const TABS = [
@@ -182,7 +200,20 @@ export default function Admin() {
                       <tr key={p.id} style={s.tr}>
                         <td style={s.td}><span style={s.idBadge}>#{p.id}</span></td>
                         <td style={{ ...s.td, fontWeight: "600" }}>{p.name}</td>
-                        <td style={s.td}>Rs. {p.price.toLocaleString()}</td>
+                        <td style={s.td}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <input
+                              style={{ ...s.input, width: "90px", padding: "5px 8px", fontSize: "13px" }}
+                              type="number"
+                              step="0.01"
+                              value={editPrices[p.id] !== undefined ? editPrices[p.id] : p.price}
+                              onChange={(e) => setEditPrices((prev) => ({ ...prev, [p.id]: e.target.value }))}
+                            />
+                            {editPrices[p.id] !== undefined && (
+                              <button style={s.saveBtn} onClick={() => updatePrice(p, editPrices[p.id])}>Save</button>
+                            )}
+                          </div>
+                        </td>
                         <td style={s.td}>
                           <span style={{ ...s.stockBadge, background: p.stock > 0 ? "var(--success-light)" : "var(--danger-light)", color: p.stock > 0 ? "var(--success)" : "var(--danger)" }}>
                             {p.stock}
@@ -393,6 +424,11 @@ const s = {
   delBtn: {
     padding: "5px 12px", background: "var(--danger-light)",
     color: "var(--danger)", border: "1px solid #fecaca",
+    borderRadius: "var(--radius-sm)", fontWeight: "600", fontSize: "12px",
+  },
+  saveBtn: {
+    padding: "5px 10px", background: "var(--success)",
+    color: "#fff", border: "none",
     borderRadius: "var(--radius-sm)", fontWeight: "600", fontSize: "12px",
   },
   statusSelect: {
