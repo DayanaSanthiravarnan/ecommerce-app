@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class OrderController {
         return orderRepository.findByUserId(getUser(ud).getId());
     }
 
+    @Transactional
     @PostMapping("/place")
     public ResponseEntity<?> placeOrder(@AuthenticationPrincipal UserDetails ud,
                                          @RequestBody Map<String, String> body) {
@@ -100,6 +102,7 @@ public class OrderController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @Transactional
     @PutMapping("/{id}/cancel")
     public ResponseEntity<?> cancelOrder(@AuthenticationPrincipal UserDetails ud,
                                           @PathVariable Integer id) {

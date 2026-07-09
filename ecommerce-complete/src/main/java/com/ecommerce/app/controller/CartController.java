@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,7 @@ public class CartController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @Transactional
     @DeleteMapping("/clear")
     public ResponseEntity<?> clearCart(@AuthenticationPrincipal UserDetails ud) {
         cartItemRepository.deleteByUserId(getUser(ud).getId());
