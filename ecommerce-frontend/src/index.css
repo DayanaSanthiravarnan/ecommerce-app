@@ -58,3 +58,37 @@ input, select, textarea { font-family: inherit; }
 }
 
 .animate-fade { animation: fadeIn 0.3s ease; }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 767px) {
+  /* Hamburger show, desktop links hide */
+  .desktop-links { display: none !important; }
+  .hamburger-btn { display: flex !important; }
+
+  /* Home grid — 2 columns on mobile */
+  .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+
+  /* Cart layout — stack vertically */
+  .cart-layout { grid-template-columns: 1fr !important; }
+
+  /* Checkout layout — stack vertically */
+  .checkout-layout { grid-template-columns: 1fr !important; }
+
+  /* ProductDetail — stack vertically */
+  .product-detail-card { grid-template-columns: 1fr !important; }
+  .product-detail-info { padding: 20px !important; }
+
+  /* Admin table scroll */
+  .table-wrap { overflow-x: auto !important; }
+
+  /* Hero text smaller */
+  .hero-title { font-size: 28px !important; }
+
+  /* Padding reduce */
+  .page-container { padding: 0 12px !important; }
+}
+
+@media (max-width: 480px) {
+  /* Single column on very small screens */
+  .product-grid { grid-template-columns: 1fr !important; }
+}
