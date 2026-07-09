@@ -145,18 +145,26 @@ export default function Home() {
                   <p style={s.desc}>{p.description || ""}</p>
                   <div style={s.cardFooter}>
                     <div>
-                      <span style={s.price}>₹{p.price.toLocaleString()}</span>
+                      <span style={s.price}>Rs. {p.price.toLocaleString()}</span>
                       {p.stock > 0 && p.stock <= 5 && (
                         <span style={s.lowStock}>Only {p.stock} left</span>
                       )}
                     </div>
-                    <button
-                      style={{ ...s.cartBtn, ...(p.stock === 0 ? s.cartBtnDisabled : {}) }}
-                      onClick={() => addToCart(p.id)}
-                      disabled={p.stock === 0}
-                    >
-                      {p.stock === 0 ? "Sold Out" : "Add to Cart"}
-                    </button>
+                    <div style={s.btnGroup}>
+                      <button
+                        style={s.viewBtn}
+                        onClick={() => navigate(`/product/${p.id}`)}
+                      >
+                        View
+                      </button>
+                      <button
+                        style={{ ...s.cartBtn, ...(p.stock === 0 ? s.cartBtnDisabled : {}) }}
+                        onClick={() => addToCart(p.id)}
+                        disabled={p.stock === 0}
+                      >
+                        {p.stock === 0 ? "Sold Out" : "+ Cart"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -245,16 +253,17 @@ const s = {
   resultsCount: { color: "var(--gray-4)" },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
     gap: "20px",
   },
   card: {
     background: "var(--white)", borderRadius: "var(--radius-lg)",
     overflow: "hidden", boxShadow: "var(--shadow-sm)",
     border: "1px solid var(--gray-3)",
+    display: "flex", flexDirection: "column",
   },
-  imgWrap: { position: "relative", overflow: "hidden" },
-  img: { width: "100%", height: "190px", objectFit: "cover", display: "block" },
+  imgWrap: { position: "relative", overflow: "hidden", flex: "0 0 auto" },
+  img: { width: "100%", height: "220px", objectFit: "cover", objectPosition: "center", display: "block" },
   outBadge: {
     position: "absolute", top: "10px", left: "10px",
     background: "rgba(15,23,42,0.75)", color: "#fff",
@@ -266,14 +275,15 @@ const s = {
     fontSize: "10px", padding: "3px 8px", borderRadius: "4px",
     fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.5px",
   },
-  cardBody: { padding: "16px" },
-  name: { fontSize: "15px", fontWeight: "700", color: "var(--dark)", marginBottom: "6px" },
+  cardBody: { padding: "12px 14px 14px", display: "flex", flexDirection: "column", flex: 1 },
+  name: { fontSize: "14px", fontWeight: "700", color: "var(--dark)", marginBottom: "4px", lineHeight: "1.3" },
   desc: {
-    fontSize: "13px", color: "var(--text-light)", marginBottom: "14px",
+    fontSize: "12px", color: "var(--text-light)", marginBottom: "10px",
     overflow: "hidden", display: "-webkit-box",
-    WebkitLineClamp: 2, WebkitBoxOrient: "vertical", lineHeight: "1.5",
+    WebkitLineClamp: 2, WebkitBoxOrient: "vertical", lineHeight: "1.4",
+    flex: 1,
   },
-  cardFooter: { display: "flex", justifyContent: "space-between", alignItems: "flex-end" },
+  cardFooter: { display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto" },
   price: { fontSize: "18px", fontWeight: "800", color: "var(--dark)", display: "block" },
   lowStock: {
     fontSize: "11px", color: "var(--accent)", fontWeight: "600",
@@ -284,6 +294,12 @@ const s = {
     color: "#fff", border: "none", borderRadius: "var(--radius-sm)",
     fontWeight: "600", fontSize: "13px", transition: "var(--transition)",
   },
+  viewBtn: {
+    padding: "8px 14px", background: "var(--white)",
+    color: "var(--primary)", border: "1.5px solid var(--primary)",
+    borderRadius: "var(--radius-sm)", fontWeight: "600", fontSize: "13px",
+  },
+  btnGroup: { display: "flex", gap: "6px" },
   cartBtnDisabled: { background: "var(--gray-3)", color: "var(--gray-4)", cursor: "not-allowed" },
   loadingBox: { textAlign: "center", padding: "80px 0" },
   spinner: {

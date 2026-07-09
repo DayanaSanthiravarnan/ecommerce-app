@@ -2,13 +2,11 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "/api",
-  withCredentials: true,
 });
 
-// Attach CSRF token from cookie to every mutating request
 api.interceptors.request.use((config) => {
-  const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
-  if (match) config.headers["X-XSRF-TOKEN"] = decodeURIComponent(match[1]);
+  const token = localStorage.getItem("token");
+  if (token) config.headers["Authorization"] = `Bearer ${token}`;
   return config;
 });
 

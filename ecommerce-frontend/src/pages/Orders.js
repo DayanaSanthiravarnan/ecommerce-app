@@ -89,14 +89,14 @@ export default function Orders() {
                     <div key={oi.id} style={s.itemRow}>
                       <span style={s.itemName}>{oi.product.name}</span>
                       <span style={s.itemQty}>× {oi.quantity}</span>
-                      <span style={s.itemPrice}>₹{(oi.price * oi.quantity).toLocaleString()}</span>
+                      <span style={s.itemPrice}>Rs. {(oi.price * oi.quantity).toLocaleString()}</span>
                     </div>
                   ))}
                 </div>
 
                 <div style={s.cardFooter}>
                   <span style={s.totalLabel}>Order Total</span>
-                  <span style={s.totalAmount}>₹{order.totalAmount.toLocaleString()}</span>
+                  <span style={s.totalAmount}>Rs. {order.totalAmount.toLocaleString()}</span>
                 </div>
               </div>
             );

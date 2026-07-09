@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class CartController {
         if (product.getStock() <= 0)
             return ResponseEntity.badRequest().body(Map.of("message", "Product is out of stock"));
         if (product.getStock() < quantity)
-            return ResponseEntity.badRequest().body(Map.of("message", "Only " + product.getStock() + " items available"));
+            return ResponseEntity.badRequest().body(Map.of("message", "Only " + HtmlUtils.htmlEscape(String.valueOf(product.getStock())) + " items available"));
 
         cartItemRepository.findByUserIdAndProductId(user.getId(), productId)
             .ifPresentOrElse(

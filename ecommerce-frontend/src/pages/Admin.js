@@ -139,7 +139,7 @@ export default function Admin() {
                     <input style={s.input} placeholder="e.g. Wireless Earbuds" value={pf.name} onChange={(e) => setPf("name", e.target.value)} required />
                   </div>
                   <div style={s.field}>
-                    <label style={s.label}>Price (₹) *</label>
+                    <label style={s.label}>Price (Rs.) *</label>
                     <input style={s.input} type="number" step="0.01" placeholder="0.00" value={pf.price} onChange={(e) => setPf("price", e.target.value)} required />
                   </div>
                   <div style={s.field}>
@@ -182,7 +182,7 @@ export default function Admin() {
                       <tr key={p.id} style={s.tr}>
                         <td style={s.td}><span style={s.idBadge}>#{p.id}</span></td>
                         <td style={{ ...s.td, fontWeight: "600" }}>{p.name}</td>
-                        <td style={s.td}>₹{p.price.toLocaleString()}</td>
+                        <td style={s.td}>Rs. {p.price.toLocaleString()}</td>
                         <td style={s.td}>
                           <span style={{ ...s.stockBadge, background: p.stock > 0 ? "var(--success-light)" : "var(--danger-light)", color: p.stock > 0 ? "var(--success)" : "var(--danger)" }}>
                             {p.stock}
@@ -268,7 +268,7 @@ export default function Admin() {
                       <tr key={o.id} style={s.tr}>
                         <td style={s.td}><span style={s.idBadge}>#{o.id}</span></td>
                         <td style={{ ...s.td, fontWeight: "600" }}>{o.user?.username}</td>
-                        <td style={{ ...s.td, fontWeight: "700", color: "var(--primary)" }}>₹{o.totalAmount.toLocaleString()}</td>
+                        <td style={{ ...s.td, fontWeight: "700", color: "var(--primary)" }}>Rs. {o.totalAmount.toLocaleString()}</td>
                         <td style={{ ...s.td, maxWidth: "160px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                           {o.shippingAddress}
                         </td>

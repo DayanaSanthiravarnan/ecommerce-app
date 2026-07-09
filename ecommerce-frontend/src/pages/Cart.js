@@ -95,14 +95,14 @@ export default function Cart() {
                   />
                   <div style={s.info}>
                     <p style={s.itemName}>{item.product.name}</p>
-                    <p style={s.unitPrice}>₹{item.product.price.toLocaleString()} each</p>
+                    <p style={s.unitPrice}>Rs. {item.product.price.toLocaleString()} each</p>
                   </div>
                   <div style={s.qtyControl}>
                     <button style={s.qtyBtn} onClick={() => updateQty(item.id, item.quantity - 1)}>−</button>
                     <span style={s.qty}>{item.quantity}</span>
                     <button style={s.qtyBtn} onClick={() => updateQty(item.id, item.quantity + 1)}>+</button>
                   </div>
-                  <p style={s.subtotal}>₹{(item.product.price * item.quantity).toLocaleString()}</p>
+                  <p style={s.subtotal}>Rs. {(item.product.price * item.quantity).toLocaleString()}</p>
                   <button style={s.removeBtn} onClick={() => remove(item.id)} title="Remove">✕</button>
                 </div>
               ))}
@@ -114,7 +114,7 @@ export default function Cart() {
               <div style={s.summaryRows}>
                 <div style={s.summaryRow}>
                   <span>Subtotal ({cart.length} items)</span>
-                  <span>₹{total.toLocaleString()}</span>
+                  <span>Rs. {total.toLocaleString()}</span>
                 </div>
                 <div style={s.summaryRow}>
                   <span>Shipping</span>
@@ -124,7 +124,7 @@ export default function Cart() {
               <div style={s.divider} />
               <div style={s.totalRow}>
                 <span>Total</span>
-                <span style={s.totalAmount}>₹{total.toLocaleString()}</span>
+                <span style={s.totalAmount}>Rs. {total.toLocaleString()}</span>
               </div>
 
               <div style={s.addressSection}>
@@ -198,7 +198,7 @@ const s = {
     display: "flex", alignItems: "center", gap: "16px",
     padding: "16px 24px", borderBottom: "1px solid var(--gray-2)",
   },
-  img: { width: "72px", height: "72px", objectFit: "cover", borderRadius: "var(--radius-sm)", flexShrink: 0 },
+  img: { width: "72px", height: "72px", objectFit: "cover", objectPosition: "center", borderRadius: "var(--radius-sm)", flexShrink: 0 },
   info: { flex: 1 },
   itemName: { fontWeight: "600", fontSize: "14px", color: "var(--dark)", marginBottom: "4px" },
   unitPrice: { color: "var(--text-light)", fontSize: "12px" },
