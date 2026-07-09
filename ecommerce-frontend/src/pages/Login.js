@@ -24,7 +24,7 @@ export default function Login() {
   return (
     <div style={s.page}>
       <div style={s.card}>
-        <div style={s.left}>
+        <div style={s.left} className="login-left">
           <div style={s.leftContent}>
             <div style={s.brandMark}>S</div>
             <h1 style={s.leftTitle}>ShopZone</h1>
@@ -40,7 +40,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div style={s.right}>
+        <div style={s.right} className="login-right">
           <div style={s.form}>
             <h2 style={s.title}>Welcome back</h2>
             <p style={s.sub}>Sign in to your account to continue</p>
@@ -98,6 +98,7 @@ const s = {
     display: "flex", width: "100%", maxWidth: "900px",
     borderRadius: "20px", overflow: "hidden",
     boxShadow: "var(--shadow-lg)",
+    className: "login-card",
   },
   left: {
     flex: 1, background: "linear-gradient(145deg, #0f172a 0%, #1e3a8a 100%)",

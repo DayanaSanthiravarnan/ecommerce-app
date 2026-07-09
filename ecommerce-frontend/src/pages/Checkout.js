@@ -49,7 +49,7 @@ export default function Checkout() {
         <button style={s.back} onClick={() => navigate(-1)}>← Back</button>
         <h2 style={s.heading}>Checkout</h2>
 
-        <div style={s.layout}>
+        <div style={s.layout} className="checkout-layout">
           {/* Address Form */}
           <div style={s.formCard}>
             <h3 style={s.sectionTitle}>📦 Delivery Details</h3>

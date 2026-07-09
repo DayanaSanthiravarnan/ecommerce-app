@@ -79,7 +79,7 @@ export default function Cart() {
             <button style={s.shopBtn} onClick={() => navigate("/")}>Browse Products</button>
           </div>
         ) : !error && (
-          <div style={s.layout}>
+          <div style={s.layout} className="cart-layout">
             {/* Items */}
             <div style={s.itemsPanel}>
               <div style={s.itemsPanelHeader}>

@@ -92,3 +92,61 @@ input, select, textarea { font-family: inherit; }
   /* Single column on very small screens */
   .product-grid { grid-template-columns: 1fr !important; }
 }
+
+/* ===== LOGIN PAGE ===== */
+@media (max-width: 767px) {
+  /* Login - hide left panel, show only form */
+  .login-left { display: none !important; }
+  .login-card { border-radius: 16px !important; }
+  .login-right { padding: 32px 24px !important; }
+}
+
+/* ===== CART PAGE ===== */
+@media (max-width: 767px) {
+  .cart-layout { grid-template-columns: 1fr !important; }
+  .cart-row { flex-wrap: wrap !important; gap: 10px !important; padding: 12px 16px !important; }
+  .cart-summary { position: static !important; }
+}
+
+/* ===== CHECKOUT PAGE ===== */
+@media (max-width: 767px) {
+  .checkout-layout { grid-template-columns: 1fr !important; }
+  .checkout-summary { order: -1; }
+}
+
+/* ===== PRODUCT DETAIL PAGE ===== */
+@media (max-width: 767px) {
+  .product-detail-grid { grid-template-columns: 1fr !important; }
+  .product-detail-img { min-height: 280px !important; height: 280px !important; }
+  .product-detail-info { padding: 20px !important; }
+  .product-actions { flex-direction: column !important; }
+}
+
+/* ===== HOME PAGE ===== */
+@media (max-width: 767px) {
+  .hero { padding: 40px 20px !important; }
+  .hero-title { font-size: 30px !important; }
+  .filter-bar { flex-direction: column !important; }
+  .search-form { flex-direction: column !important; }
+  .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .page-container { padding: 20px 12px !important; }
+}
+
+@media (max-width: 400px) {
+  .product-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ===== ORDERS PAGE ===== */
+@media (max-width: 767px) {
+  .order-card-header { flex-direction: column !important; align-items: flex-start !important; }
+  .order-item-row { flex-wrap: wrap !important; }
+}
+
+/* ===== ADMIN PAGE ===== */
+@media (max-width: 767px) {
+  .admin-form-grid { grid-template-columns: 1fr !important; }
+  .admin-inline-form { grid-template-columns: 1fr !important; }
+  .admin-stats { flex-wrap: wrap !important; }
+  .admin-table-wrap { overflow-x: auto !important; }
+  .admin-page-header { flex-direction: column !important; align-items: flex-start !important; }
+}

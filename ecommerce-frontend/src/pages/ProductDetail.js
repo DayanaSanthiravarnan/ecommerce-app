@@ -51,7 +51,7 @@ export default function ProductDetail() {
       )}
       <div style={s.container}>
         <button style={s.back} onClick={() => navigate(-1)}>← Back</button>
-        <div style={s.card}>
+        <div style={s.card} className="product-detail-grid">
           <div style={s.imgWrap}>
             <img
               src={product.imageUrl || "https://via.placeholder.com/500x400?text=No+Image"}
@@ -61,7 +61,7 @@ export default function ProductDetail() {
             {product.stock === 0 && <div style={s.outBadge}>Out of Stock</div>}
             {product.category && <div style={s.catBadge}>{product.category.name}</div>}
           </div>
-          <div style={s.info}>
+          <div style={s.info} className="product-detail-info">
             <h1 style={s.name}>{product.name}</h1>
             {product.description && <p style={s.desc}>{product.description}</p>}
             <div style={s.priceRow}>
@@ -72,7 +72,7 @@ export default function ProductDetail() {
               {product.stock > 5 && <span style={s.inStock}>✓ In Stock</span>}
             </div>
             <div style={s.payBadge}>💵 Cash on Delivery available</div>
-            <div style={s.actions}>
+            <div style={s.actions} className="product-actions">
               <button
                 style={{ ...s.cartBtn, ...(product.stock === 0 ? s.disabled : {}) }}
                 onClick={addToCart}
