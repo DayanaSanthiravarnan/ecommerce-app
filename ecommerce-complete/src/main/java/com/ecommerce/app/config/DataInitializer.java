@@ -52,18 +52,7 @@ public class DataInitializer implements ApplicationRunner {
         if (name.contains("trouser") || name.contains("pant")) return 1299.00;
         if (name.contains("skirt"))           return 999.00;
         if (name.contains("top"))             return 899.00;
-        if (name.contains("shoe") || name.contains("sneaker")) return 2299.00;
-        if (name.contains("sandal") || name.contains("slipper")) return 899.00;
-        if (name.contains("watch"))           return 3999.00;
-        if (name.contains("bag") || name.contains("handbag")) return 1999.00;
-        if (name.contains("laptop"))          return 54999.00;
-        if (name.contains("phone") || name.contains("mobile")) return 18999.00;
-        if (name.contains("earphone") || name.contains("earbuds")) return 1999.00;
-        if (name.contains("headphone"))       return 2999.00;
-        if (name.contains("tablet"))          return 24999.00;
-        if (name.contains("camera"))          return 34999.00;
-        if (name.contains("tv") || name.contains("television")) return 29999.00;
-        // default fallback — anything else gets 1299
+        // default fallback
         return 1299.00;
     }
 }
