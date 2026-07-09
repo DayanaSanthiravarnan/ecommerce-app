@@ -1,0 +1,6 @@
+ecommerce-frontend/node_modules/
+ecommerce-frontend/build/
+ecommerce-complete/target/
+*.class
+*.jar
+.env
