@@ -2,6 +2,7 @@ package com.ecommerce.app.controller;
 
 import com.ecommerce.app.model.Order;
 import com.ecommerce.app.repository.OrderRepository;
+import com.ecommerce.app.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
