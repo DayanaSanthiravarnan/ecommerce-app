@@ -150,3 +150,21 @@ input, select, textarea { font-family: inherit; }
   .admin-table-wrap { overflow-x: auto !important; }
   .admin-page-header { flex-direction: column !important; align-items: flex-start !important; }
 }
+
+/* ===== REGISTER PAGE ===== */
+@media (max-width: 767px) {
+  .register-grid { grid-template-columns: 1fr !important; }
+  .register-grid > * { grid-column: 1 !important; }
+}
+
+/* ===== ADMIN PAGE FULL FIX ===== */
+@media (max-width: 767px) {
+  .admin-page-header { flex-direction: column !important; align-items: flex-start !important; padding: 16px !important; }
+  .admin-stats { flex-wrap: wrap !important; gap: 8px !important; }
+  .admin-form-grid { grid-template-columns: 1fr !important; }
+  .admin-form-grid > * { grid-column: 1 !important; }
+  .admin-inline-form { grid-template-columns: 1fr !important; }
+  .admin-inline-form button { width: 100% !important; }
+  .admin-table-wrap, [style*="overflowX"] { overflow-x: auto !important; min-width: 0 !important; }
+  .tab-bar { width: 100% !important; }
+}

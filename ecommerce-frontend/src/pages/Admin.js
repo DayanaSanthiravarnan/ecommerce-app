@@ -105,12 +105,12 @@ export default function Admin() {
     <div style={s.page}>
       <div style={s.container}>
         {/* Header */}
-        <div style={s.pageHeader}>
+        <div style={s.pageHeader} className="admin-page-header">
           <div>
             <h2 style={s.title}>Admin Dashboard</h2>
             <p style={s.subtitle}>Manage your store inventory and orders</p>
           </div>
-          <div style={s.statsRow}>
+          <div style={s.statsRow} className="admin-stats">
             {[
               { label: "Products",   value: products.length,   color: "var(--primary)" },
               { label: "Categories", value: categories.length, color: "#7c3aed" },
@@ -151,7 +151,7 @@ export default function Admin() {
             <div style={s.card}>
               <h3 style={s.cardTitle}>Add New Product</h3>
               <form onSubmit={saveProduct}>
-                <div style={s.formGrid}>
+                <div style={s.formGrid} className="admin-form-grid">
                   <div style={s.field}>
                     <label style={s.label}>Product Name *</label>
                     <input style={s.input} placeholder="e.g. Wireless Earbuds" value={pf.name} onChange={(e) => setPf("name", e.target.value)} required />
@@ -237,7 +237,7 @@ export default function Admin() {
           <div>
             <div style={s.card}>
               <h3 style={s.cardTitle}>Add New Category</h3>
-              <form onSubmit={saveCategory} style={s.inlineForm}>
+              <form onSubmit={saveCategory} style={s.inlineForm} className="admin-inline-form">
                 <div style={s.field}>
                   <label style={s.label}>Category Name *</label>
                   <input style={s.input} placeholder="e.g. Electronics" value={categoryForm.name} onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })} required />

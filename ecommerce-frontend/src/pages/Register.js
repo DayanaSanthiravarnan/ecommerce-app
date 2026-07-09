@@ -48,7 +48,7 @@ export default function Register() {
         )}
 
         <form onSubmit={handleSubmit} style={s.form}>
-          <div style={s.grid}>
+          <div style={s.grid} className="register-grid">
             {fields.map(({ key, label, type, placeholder, half }) => (
               <div key={key} style={{ ...s.field, ...(half ? {} : s.fullWidth) }}>
                 <label style={s.label}>{label}</label>
